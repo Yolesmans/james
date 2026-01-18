@@ -40,6 +40,28 @@
     --cursor-x: 50%;
     --cursor-y: 50%;
   }
+
+  .dark {
+    /* Design System AXIOM - DARK MODE */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 99%;
+    --muted-foreground: 0 0% 65%;
+    --primary: 160 84% 39%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 99%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 99%;
+    --muted: 0 0% 8%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 15%;
+    --border-opacity: 0.25;
+    --input: 0 0% 12%;
+    --ring: 160 84% 39%;
+  }
 }
 
 @layer base {
@@ -49,6 +71,9 @@
   html {
     background: #FDFDFD;
   }
+  html.dark {
+    background: #0A0A0A;
+  }
   body {
     @apply text-foreground;
     background: #FDFDFD;
@@ -56,12 +81,26 @@
     min-height: 100vh;
     position: relative;
     color: #1A1A1B;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  html.dark body {
+    background: #0A0A0A;
+    color: #FDFDFD;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Instrument Serif', serif;
     font-weight: 600;
     color: #1A1A1B;
     letter-spacing: -0.02em;
+    transition: color 0.3s ease;
+  }
+  html.dark h1, 
+  html.dark h2, 
+  html.dark h3, 
+  html.dark h4, 
+  html.dark h5, 
+  html.dark h6 {
+    color: #FDFDFD;
   }
   .font-mono {
     font-family: 'Geist Mono', 'Courier New', monospace;

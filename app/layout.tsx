@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Header from '@/components/nav/Header'
+import ConditionalHeader from '@/components/nav/ConditionalHeader'
 
 export const metadata: Metadata = {
   title: 'AXIOM - Recrutement sans CV',
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
-        <Header />
+        <ConditionalHeader />
         {children}
       </body>
     </html>
