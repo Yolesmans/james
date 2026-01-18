@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Header from '@/components/nav/Header'
 
 export const metadata: Metadata = {
   title: 'AXIOM - Recrutement sans CV',
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
+        <Header />
         {children}
       </body>
     </html>

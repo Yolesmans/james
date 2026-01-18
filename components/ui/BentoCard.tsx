@@ -13,7 +13,7 @@ export default function BentoCard({ children, className, variant = 'default' }: 
       className={cn(
         'rounded-[28px] backdrop-blur-[10px]',
         'bg-card/80',
-        'border border-white/10',
+        'border border-gray-200',
         'p-6 md:p-8',
         variant === 'large' && 'md:p-12',
         className

@@ -7,8 +7,8 @@ export default function Spotlight() {
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth) * 100
       const y = (e.clientY / window.innerHeight) * 100
-      document.documentElement.style.setProperty('--spotlight-x', `${x}%`)
-      document.documentElement.style.setProperty('--spotlight-y', `${y}%`)
+      document.documentElement.style.setProperty('--shadow-x', `${x}%`)
+      document.documentElement.style.setProperty('--shadow-y', `${y}%`)
     }
 
     // Desktop only
