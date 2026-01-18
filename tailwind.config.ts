@@ -55,6 +55,10 @@ const config: Config = {
       },
       fontFamily: {
         serif: ['Instrument Serif', 'serif'],
+        mono: ['Geist Mono', 'Courier New', 'monospace'],
+      },
+      animation: {
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },
