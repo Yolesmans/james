@@ -1,6 +1,6 @@
 import Hero from '@/components/blocks/Hero'
 import BentoGrid from '@/components/blocks/BentoGrid'
-import Promesse from '@/components/blocks/Promesse'
+import Convergence from '@/components/Convergence'
 import HowItWorks from '@/components/blocks/HowItWorks'
 import Trust from '@/components/blocks/Trust'
 import FinalCTA from '@/components/blocks/FinalCTA'
@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <Hero />
       <BentoGrid />
-      <Promesse />
+      <Convergence />
       <HowItWorks />
       <Trust />
       <FinalCTA />

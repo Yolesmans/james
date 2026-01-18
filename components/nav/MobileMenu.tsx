@@ -24,22 +24,22 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </div>
         <nav className="space-y-6">
           <Link
-            href="/candidat"
-            className="block text-lg font-medium text-gray-900 hover:text-primary transition-colors duration-300"
+            href="/profil"
+            className="block text-lg font-medium text-[#1A1A1B] hover:text-[#10B981] transition-colors duration-200"
             onClick={onClose}
           >
-            Candidat
+            Votre Profil
           </Link>
           <Link
-            href="/entreprise"
-            className="block text-lg font-medium text-gray-900 hover:text-primary transition-colors duration-300"
+            href="/organisation"
+            className="block text-lg font-medium text-[#1A1A1B] hover:text-[#10B981] transition-colors duration-200"
             onClick={onClose}
           >
-            Entreprise
+            Votre Organisation
           </Link>
           <Link
             href="/labs"
-            className="block text-lg font-medium text-gray-900 hover:text-primary transition-colors duration-300"
+            className="block text-lg font-medium text-[#1A1A1B] hover:text-[#10B981] transition-colors duration-200"
             onClick={onClose}
           >
             Axiom Labs

@@ -6,7 +6,7 @@ export default function Trust() {
     <section className="py-20 md:py-32 px-4">
       <div className="container max-w-4xl mx-auto space-y-12">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-foreground">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
             {copy.home.trust.title}
           </h2>
         </div>
@@ -15,8 +15,8 @@ export default function Trust() {
           {copy.home.trust.bullets.map((bullet, index) => (
             <BentoCard key={index}>
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-2 h-2 rounded-full bg-primary mt-2" />
-                <p className="text-foreground leading-relaxed">{bullet}</p>
+                <div className="flex-shrink-0 w-2 h-2 rounded-full bg-[#10B981] mt-2" />
+                <p className="text-[#1A1A1B] leading-relaxed">{bullet}</p>
               </div>
             </BentoCard>
           ))}

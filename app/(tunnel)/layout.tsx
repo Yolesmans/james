@@ -7,7 +7,7 @@ export default function TunnelLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="shadow-aura-bg min-h-screen relative">
+    <div className="cursor-spotlight-bg min-h-screen relative">
       <Spotlight />
       <Aura />
       <main className="relative z-10">{children}</main>

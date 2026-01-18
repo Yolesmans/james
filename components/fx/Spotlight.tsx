@@ -5,10 +5,11 @@ import { useEffect } from 'react'
 export default function Spotlight() {
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
+      // Calcul précis de la position relative à la fenêtre
       const x = (e.clientX / window.innerWidth) * 100
       const y = (e.clientY / window.innerHeight) * 100
-      document.documentElement.style.setProperty('--shadow-x', `${x}%`)
-      document.documentElement.style.setProperty('--shadow-y', `${y}%`)
+      document.documentElement.style.setProperty('--cursor-x', `${x}%`)
+      document.documentElement.style.setProperty('--cursor-y', `${y}%`)
     }
 
     // Desktop only

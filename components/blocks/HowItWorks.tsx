@@ -8,7 +8,7 @@ export default function HowItWorks() {
     <section id="comment-ca-marche" className="py-20 md:py-32 px-4">
       <div className="container max-w-4xl mx-auto space-y-12">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-foreground">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
             {copy.home.howItWorks.title}
           </h2>
         </div>
@@ -17,11 +17,11 @@ export default function HowItWorks() {
           {copy.home.howItWorks.steps.map((step, index) => (
             <BentoCard key={index}>
               <div className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <span className="text-primary font-semibold text-lg">{index + 1}</span>
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#10B981]/10 flex items-center justify-center">
+                  <span className="text-[#10B981] font-semibold text-lg">{index + 1}</span>
                 </div>
                 <div className="flex-1">
-                  <p className="text-lg text-foreground leading-relaxed">{step}</p>
+                  <p className="text-lg text-[#1A1A1B] leading-relaxed">{step}</p>
                 </div>
               </div>
             </BentoCard>

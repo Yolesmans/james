@@ -11,30 +11,30 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md transition-all duration-300 ease-in-out group hover:bg-gray-900 hover:border-gray-700">
+      <header className="sticky top-0 z-40 w-full border-b border-[rgba(26,26,27,0.08)] bg-[rgba(253,253,253,0.75)] backdrop-blur-[12px]">
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-xl font-serif font-semibold text-gray-900 transition-colors duration-300 group-hover:text-white">AXIOM</span>
+            <span className="text-xl font-serif font-semibold text-[#1A1A1B]">AXIOM</span>
           </Link>
 
           {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
             <Link
-              href="/candidat"
-              className="text-sm font-medium text-gray-600 transition-colors duration-300 group-hover:text-gray-300 hover:text-gray-900 group-hover:hover:text-white"
+              href="/profil"
+              className="text-sm font-medium text-[#4B5563] hover:text-[#1A1A1B] transition-colors duration-200"
             >
-              Candidat
+              Votre Profil
             </Link>
             <Link
-              href="/entreprise"
-              className="text-sm font-medium text-gray-600 transition-colors duration-300 group-hover:text-gray-300 hover:text-gray-900 group-hover:hover:text-white"
+              href="/organisation"
+              className="text-sm font-medium text-[#4B5563] hover:text-[#1A1A1B] transition-colors duration-200"
             >
-              Entreprise
+              Votre Organisation
             </Link>
             <Link
               href="/labs"
-              className="text-sm font-medium text-gray-600 transition-colors duration-300 group-hover:text-gray-300 hover:text-gray-900 group-hover:hover:text-white"
+              className="text-sm font-medium text-[#4B5563] hover:text-[#1A1A1B] transition-colors duration-200"
             >
               Axiom Labs
             </Link>
@@ -42,7 +42,7 @@ export default function Header() {
 
           {/* CTA Desktop */}
           <div className="hidden md:flex items-center">
-            <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-white transition-all duration-300 group-hover:bg-white group-hover:text-gray-900">
+            <Button asChild size="sm" className="bg-[#10B981] hover:bg-[#10B981]/90 text-white">
               <Link href="/start">Lancer le diagnostic</Link>
             </Button>
           </div>
@@ -54,11 +54,11 @@ export default function Header() {
               size="icon"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Menu"
-              className="text-gray-900 transition-colors duration-300 group-hover:text-white"
+              className="text-[#1A1A1B]"
             >
               <Menu className="h-5 w-5" />
             </Button>
-            <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-white transition-all duration-300 group-hover:bg-white group-hover:text-gray-900">
+            <Button asChild size="sm" className="bg-[#10B981] hover:bg-[#10B981]/90 text-white">
               <Link href="/start">Lancer</Link>
             </Button>
           </div>

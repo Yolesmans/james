@@ -11,9 +11,9 @@ export default function BentoCard({ children, className, variant = 'default' }: 
   return (
     <div
       className={cn(
-        'rounded-[28px] backdrop-blur-[10px]',
-        'bg-card/80',
-        'border border-gray-200',
+        'rounded-[28px] backdrop-blur-sm',
+        'bg-card',
+        'border border-[rgba(26,26,27,0.12)]',
         'p-6 md:p-8',
         variant === 'large' && 'md:p-12',
         className
