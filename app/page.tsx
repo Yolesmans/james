@@ -1,82 +1,63 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import BentoCard from '@/components/ui/BentoCard'
-import { Button } from '@/components/ui/button'
 
 export default function HomePage() {
-  const [showThemeSelector, setShowThemeSelector] = useState(false)
-  const router = useRouter()
+  const [mounted, setMounted] = useState(false)
 
-  const handleProfilClick = () => {
-    setShowThemeSelector(true)
-  }
-
-  const handleThemeChoice = (theme: 'light' | 'dark') => {
-    localStorage.setItem('axiom-theme', theme)
-    router.push('/profil')
-  }
-
-  const handleOrganisationClick = () => {
-    localStorage.setItem('axiom-theme', 'light')
-    router.push('/organisation')
-  }
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FDFDFD] overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-[#FDFDFD] overflow-hidden relative">
+      {/* Logo AXIOM - Position fixed en haut à gauche */}
+      <div
+        className={`fixed top-6 left-6 z-10 font-serif text-xl text-[#1A1A1B] transition-all duration-[900ms] ease-out ${
+          mounted ? 'opacity-85 translate-y-0' : 'opacity-0 translate-y-3'
+        }`}
+      >
+        AXIOM
+      </div>
+
       <div className="w-full max-w-4xl px-4">
-        <div className="text-center mb-16">
-          <p className="text-5xl font-serif text-[#1A1A1B]">
+        {/* Manifeste - Phrase centrale */}
+        <div
+          className={`text-center mb-16 transition-all duration-[900ms] ease-out ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+          style={{ transitionDelay: '200ms' }}
+        >
+          <p className="font-serif font-semibold text-4xl md:text-6xl text-[#1A1A1B] tracking-tight">
             L'alignement parfait ne doit plus être du hasard, mais une évidence.
           </p>
         </div>
 
-        {!showThemeSelector ? (
-          <div className="grid md:grid-cols-2 gap-6">
-            <BentoCard
-              className="cursor-pointer transition-all hover:scale-[1.02]"
-              onClick={handleProfilClick}
-            >
+        {/* Cartes - Votre Profil / Votre Organisation */}
+        <div
+          className={`grid md:grid-cols-2 gap-6 transition-all duration-[900ms] ease-out ${
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+          }`}
+          style={{ transitionDelay: '400ms' }}
+        >
+          <Link href="/profil" className="block">
+            <BentoCard className="cursor-pointer transition-all duration-300 hover:bg-[#FAFAFA] hover:border-[rgba(26,26,27,0.2)] hover:-translate-y-0.5 bg-white border-[rgba(26,26,27,0.08)]">
               <h2 className="text-2xl font-serif font-semibold text-[#1A1A1B]">
                 Votre Profil
               </h2>
             </BentoCard>
+          </Link>
 
-            <BentoCard
-              className="cursor-pointer transition-all hover:scale-[1.02]"
-              onClick={handleOrganisationClick}
-            >
+          <Link href="/organisation" className="block">
+            <BentoCard className="cursor-pointer transition-all duration-300 hover:bg-[#FAFAFA] hover:border-[rgba(26,26,27,0.2)] hover:-translate-y-0.5 bg-white border-[rgba(26,26,27,0.08)]">
               <h2 className="text-2xl font-serif font-semibold text-[#1A1A1B]">
                 Votre Organisation
               </h2>
             </BentoCard>
-          </div>
-        ) : (
-          <div className="max-w-md mx-auto">
-            <BentoCard>
-              <div className="space-y-6">
-                <p className="text-lg text-[#1A1A1B] text-center">
-                  Choisissez votre univers : Clair / Sombre
-                </p>
-                <div className="flex gap-4">
-                  <Button
-                    onClick={() => handleThemeChoice('light')}
-                    className="flex-1 bg-[#10B981] hover:bg-[#10B981]/90 text-white"
-                  >
-                    Clair
-                  </Button>
-                  <Button
-                    onClick={() => handleThemeChoice('dark')}
-                    className="flex-1 bg-[#10B981] hover:bg-[#10B981]/90 text-white"
-                  >
-                    Sombre
-                  </Button>
-                </div>
-              </div>
-            </BentoCard>
-          </div>
-        )}
+          </Link>
+        </div>
       </div>
     </div>
   )
