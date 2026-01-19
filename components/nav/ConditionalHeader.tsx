@@ -10,5 +10,10 @@ export default function ConditionalHeader() {
     return null
   }
   
+  // Sur /profil/*, afficher le header mais sans le bouton CTA
+  if (pathname?.startsWith('/profil')) {
+    return <Header hideCta />
+  }
+  
   return <Header />
 }

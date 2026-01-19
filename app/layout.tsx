@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body>
+      <body className="bg-axiom-bg text-axiom-primary font-sans">
         <ConditionalHeader />
         {children}
       </body>

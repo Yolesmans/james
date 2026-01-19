@@ -14,8 +14,8 @@ export default function ProfilFuturPage() {
   // Afficher le placeholder pendant le chargement
   if (adnCompleted === null) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FDFDFD]">
-        <div className="text-[#0F172A]">Chargement...</div>
+      <div className="min-h-screen flex items-center justify-center bg-axiom-bg">
+        <div className="text-axiom-primary">Chargement...</div>
       </div>
     )
   }
@@ -27,14 +27,14 @@ export default function ProfilFuturPage() {
 
   // Si l'ADN est complété, afficher le contenu
   return (
-    <div className="min-h-screen bg-[#FDFDFD] pb-20">
+    <div className="min-h-screen bg-axiom-bg pb-20">
       <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-2xl space-y-4">
-            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#0F172A]">
+            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">
               Mon Horizon
             </h1>
-            <p className="text-lg text-[#475569]">
+            <p className="text-lg text-axiom-secondary">
               James explore avec vous les écosystèmes qui résonnent avec votre fréquence.
             </p>
           </div>

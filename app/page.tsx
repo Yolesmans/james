@@ -64,10 +64,10 @@ export default function HomePage() {
   }, [mounted, firstPart, secondPart, pauseDuration])
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FDFDFD] overflow-hidden relative">
+    <div className="min-h-screen flex items-center justify-center bg-axiom-bg overflow-hidden relative">
       {/* Logo AXIOM - Position fixed en haut à gauche */}
       <div
-        className={`fixed top-6 left-6 z-10 font-serif text-3xl md:text-4xl font-semibold text-[#1A1A1B] transition-all duration-[900ms] ease-out ${
+        className={`fixed top-6 left-6 z-10 font-serif text-3xl md:text-4xl font-semibold text-[#0F172A] transition-all duration-[900ms] ease-out ${
           mounted ? 'opacity-85 translate-y-0' : 'opacity-85 translate-y-0'
         }`}
       >
@@ -82,7 +82,7 @@ export default function HomePage() {
           }`}
           style={{ transitionDelay: '200ms' }}
         >
-          <p className="font-serif font-semibold text-xl md:text-2xl text-[#1A1A1B] tracking-tight whitespace-pre-line">
+          <p className="font-serif font-semibold text-xl md:text-2xl text-[#0F172A] tracking-tight whitespace-pre-line">
             {displayedText || firstPart}
             {((displayedText.length < firstPart.length && displayedText.length > 0) || 
               isPaused ||
@@ -100,18 +100,16 @@ export default function HomePage() {
           style={{ transitionDelay: '400ms' }}
         >
           <Link href="/profil" className="block group">
-            <BentoCard className="cursor-pointer transition-all duration-500 ease-out bg-white border-[rgba(26,26,27,0.1)] h-full flex items-center justify-center min-h-[160px] md:min-h-[180px] relative overflow-hidden hover:border-[rgba(26,26,27,0.25)] hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(26,26,27,0.02)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <h2 className="text-lg md:text-xl font-serif font-semibold text-[#1A1A1B] text-center tracking-tight relative z-10 transition-all duration-300 group-hover:tracking-wide">
+            <BentoCard className="cursor-pointer transition-all duration-500 ease-out h-full flex items-center justify-center min-h-[160px] md:min-h-[180px] relative overflow-hidden hover:-translate-y-2 hover:scale-[1.02]">
+              <h2 className="text-lg md:text-xl font-serif font-semibold text-axiom-primary text-center tracking-tight relative z-10 transition-all duration-300 group-hover:tracking-wide">
                 Votre Profil
               </h2>
             </BentoCard>
           </Link>
 
           <Link href="/organisation" className="block group">
-            <BentoCard className="cursor-pointer transition-all duration-500 ease-out bg-white border-[rgba(26,26,27,0.1)] h-full flex items-center justify-center min-h-[160px] md:min-h-[180px] relative overflow-hidden hover:border-[rgba(26,26,27,0.25)] hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]">
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgba(26,26,27,0.02)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <h2 className="text-lg md:text-xl font-serif font-semibold text-[#1A1A1B] text-center tracking-tight relative z-10 transition-all duration-300 group-hover:tracking-wide">
+            <BentoCard className="cursor-pointer transition-all duration-500 ease-out h-full flex items-center justify-center min-h-[160px] md:min-h-[180px] relative overflow-hidden hover:-translate-y-2 hover:scale-[1.02]">
+              <h2 className="text-lg md:text-xl font-serif font-semibold text-axiom-primary text-center tracking-tight relative z-10 transition-all duration-300 group-hover:tracking-wide">
                 Votre Organisation
               </h2>
             </BentoCard>

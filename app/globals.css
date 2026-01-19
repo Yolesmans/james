@@ -14,10 +14,10 @@
     --foreground: 0 0% 10%;
     /* Texte secondaire : #4B5563 */
     --muted-foreground: 215 16% 47%;
-    /* Accent primaire : #10B981 (Lucid Emerald) */
+    /* Accent primaire : AXIOM Night/Royal (gradient) */
     --primary: 160 84% 39%;
     --primary-foreground: 0 0% 100%;
-    /* Accent Emerald */
+    /* Accent AXIOM */
     --accent: 160 84% 39%;
     --accent-foreground: 0 0% 100%;
     /* Cards - fond clair */
@@ -35,6 +35,14 @@
     --input: 0 0% 96%;
     --ring: 160 84% 39%;
     --radius: 1.75rem; /* 28px */
+    
+    /* AXIOM PRESTIGE - Palette Profil */
+    --bg: #FDFDFD;
+    --surface: #FFFFFF;
+    --text: #0F172A;
+    --text2: #64748B;
+    --accent-james: #6D28D9;
+    --hairline: rgba(226, 232, 240, 0.4);
     
     /* Cursor spotlight variables (mises à jour par JS) */
     --cursor-x: 50%;
@@ -80,7 +88,7 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     min-height: 100vh;
     position: relative;
-    color: #1A1A1B;
+    color: #0F172A;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   html.dark body {
@@ -90,7 +98,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Instrument Serif', serif;
     font-weight: 600;
-    color: #1A1A1B;
+    color: #0F172A;
     letter-spacing: -0.02em;
     transition: color 0.3s ease;
   }
@@ -127,5 +135,31 @@
   
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* AXIOM Prestige - Surface Card */
+  .axiom-surface {
+    @apply bg-axiom-surface border-[rgba(226,232,240,0.4)] shadow-sm rounded-axiom;
+  }
+
+  /* AXIOM Prestige - Glow Hover Effect */
+  .axiom-glow-hover {
+    @apply relative transition-all duration-300;
+  }
+
+  .axiom-glow-hover::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(circle at center, rgba(168, 85, 247, 0.03) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 24px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .axiom-glow-hover:hover::before {
+    opacity: 1;
   }
 }

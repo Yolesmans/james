@@ -16,16 +16,16 @@ export default function ProfilPage() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] pb-20">
+    <div className="min-h-screen bg-axiom-bg pb-20">
       <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
         <div className="space-y-8">
           {/* Carte de bienvenue */}
           <BentoCard>
             <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#0F172A]">
+              <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">
                 Bienvenue dans votre espace
               </h1>
-              <p className="text-lg text-[#475569]">
+              <p className="text-lg text-axiom-secondary">
                 Explorez votre ADN, découvrez votre Prisme et visualisez votre Horizon.
               </p>
             </div>
@@ -35,26 +35,26 @@ export default function ProfilPage() {
           <BentoCard>
             <div className="space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-serif font-semibold text-[#0F172A]">
+                <h2 className="text-xl font-serif font-semibold text-axiom-primary">
                   Progression de votre ADN
                 </h2>
-                <span className="text-sm text-[#475569]">
-                  {adnCompleted ? 'Complété' : 'En cours'}
+                <span className="text-xs text-axiom-primary/40">
+                  Progression : {mounted ? (adnCompleted ? '100%' : '40%') : '0%'}
                 </span>
               </div>
               
               {/* Barre de progression */}
-              <div className="w-full h-2 bg-[rgba(226,232,240,0.3)] rounded-full overflow-hidden">
+              <div className="w-full rounded-full overflow-hidden" style={{ height: '4px', backgroundColor: 'rgba(241, 245, 249, 0.5)' }}>
                 <div
-                  className="h-full rounded-full transition-all duration-800 ease-out animate-pulse"
+                  className="rounded-full transition-all duration-800 ease-out bg-gradient-to-r from-[#6D28D9] to-[#A855F7]"
                   style={{
-                    width: mounted ? (adnCompleted ? '100%' : '40%') : '0%',
-                    background: 'linear-gradient(to right, #6D28D9, #A855F7)'
+                    height: '4px',
+                    width: mounted ? (adnCompleted ? '100%' : '40%') : '0%'
                   }}
                 />
               </div>
 
-              <p className="text-sm text-[#475569]">
+              <p className="text-sm text-axiom-secondary">
                 {adnCompleted
                   ? 'Votre ADN est complété. Vous pouvez maintenant accéder à votre Prisme et votre Horizon.'
                   : 'Continuez votre analyse pour débloquer votre Prisme et votre Horizon.'}
@@ -65,11 +65,8 @@ export default function ProfilPage() {
                   <Button
                     asChild
                     size="lg"
-                    className="text-white font-medium transition-all duration-300 hover:scale-105"
-                    style={{
-                      background: 'linear-gradient(to right, #6D28D9, #A855F7)',
-                      boxShadow: '0 10px 15px -3px rgba(109, 40, 217, 0.3)'
-                    }}
+                    variant="prestige"
+                    className="px-6 py-3"
                   >
                     <Link href="/profil/analyse">
                       Reprendre l'analyse avec James

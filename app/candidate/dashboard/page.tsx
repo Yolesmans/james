@@ -19,7 +19,7 @@ export default function CandidateDashboard() {
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="h-5 w-5 text-green-500" />
+                <CheckCircle2 className="h-5 w-5 text-axiom-amethyst" />
                 <CardTitle className="text-lg">Profil complété</CardTitle>
               </div>
               <CardDescription>
@@ -36,7 +36,7 @@ export default function CandidateDashboard() {
           <Card>
             <CardHeader>
               <div className="flex items-center gap-2">
-                <MessageSquare className="h-5 w-5 text-blue-500" />
+                <MessageSquare className="h-5 w-5 text-axiom-royal" />
                 <CardTitle className="text-lg">Matching</CardTitle>
               </div>
               <CardDescription>
