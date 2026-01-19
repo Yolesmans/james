@@ -28,7 +28,7 @@ export default function ProfilFuturPage() {
   // Si l'ADN est complété, afficher le contenu
   return (
     <div className="min-h-screen bg-axiom-bg pb-20">
-      <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
+      <div className="container max-w-4xl mx-auto px-4 pt-4 pb-12 md:pb-24">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-2xl space-y-4">
             <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">

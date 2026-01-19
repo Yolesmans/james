@@ -12,7 +12,7 @@ export default function ProfilSettingsPage() {
 
   return (
     <div className="min-h-screen bg-axiom-bg pb-20">
-      <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
+      <div className="container max-w-4xl mx-auto px-4 pt-4 pb-12 md:pb-24">
         <div className="space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">

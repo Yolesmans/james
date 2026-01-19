@@ -17,7 +17,7 @@ export default function ProfilPage() {
 
   return (
     <div className="min-h-screen bg-axiom-bg pb-20">
-      <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
+      <div className="container max-w-4xl mx-auto px-4 pt-4 pb-12 md:pb-24">
         <div className="space-y-8">
           {/* Carte de bienvenue */}
           <BentoCard>

@@ -25,7 +25,7 @@ export default function ProfilResultatsPage() {
   if (!adnCompleted) {
     return (
       <div className="min-h-screen bg-axiom-bg pb-20 backdrop-blur-xl">
-        <div className="container max-w-6xl mx-auto px-4 py-12 md:py-24">
+        <div className="container max-w-6xl mx-auto px-4 pt-4 pb-12 md:pb-24">
           <div className="space-y-12">
             <div className="text-center space-y-4">
               <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">
@@ -89,7 +89,7 @@ export default function ProfilResultatsPage() {
   // Si l'ADN est complété, afficher le contenu avec BentoGrid
   return (
     <div className="min-h-screen bg-axiom-bg pb-20">
-      <div className="container max-w-6xl mx-auto px-4 py-12 md:py-24">
+      <div className="container max-w-6xl mx-auto px-4 pt-4 pb-12 md:pb-24">
         <div className="space-y-12">
           <div className="text-center space-y-4">
             <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">

@@ -1,6 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Settings, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -18,13 +19,35 @@ export default function ProfilLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      
+      // Si on scroll vers le bas et qu'on a scrollé plus de 50px, le header principal est masqué
+      if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+        setIsScrolled(true)
+      } 
+      // Si on scroll vers le haut ou qu'on est en haut, le header principal est visible
+      else if (currentScrollY < lastScrollY || currentScrollY < 50) {
+        setIsScrolled(false)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [lastScrollY])
 
   return (
     <div className="min-h-screen bg-axiom-bg">
       {/* Header Navigation - Barre flottante premium */}
-      <header className="sticky top-16 z-30 w-full">
+      <header className={`sticky ${isScrolled ? 'top-0' : 'top-16'} z-50 w-full transition-all duration-300`}>
         <div className="container max-w-6xl mx-auto px-4 md:px-6 pt-2">
-          <div className="bg-axiom-surface border border-[rgba(226,232,240,0.4)] rounded-axiom shadow-sm">
+          <div className="bg-axiom-surface backdrop-blur-xl border border-[rgba(226,232,240,0.4)] rounded-axiom shadow-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.98)' }}>
             <nav className="flex items-center justify-between h-16 px-4 md:px-6">
               {/* Navigation Tabs */}
               <div className="flex items-center space-x-1 md:space-x-2 overflow-x-auto scrollbar-hide">
@@ -81,7 +104,9 @@ export default function ProfilLayout({
       </header>
 
       {/* Page Content */}
-      {children}
+      <div className={`transition-all duration-300 ${isScrolled ? 'pt-0' : 'pt-4'}`}>
+        {children}
+      </div>
     </div>
   )
 }
