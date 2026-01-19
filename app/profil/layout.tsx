@@ -2,7 +2,7 @@
 
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Settings } from 'lucide-react'
+import { Settings, Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
@@ -36,32 +36,42 @@ export default function ProfilLayout({
                     className={cn(
                       'relative px-4 py-2 text-sm font-medium transition-colors duration-200 whitespace-nowrap',
                       isActive
-                        ? 'text-[#1A1A1B]'
-                        : 'text-[#4B5563] hover:text-[#1A1A1B]'
+                        ? 'text-[#0F172A]'
+                        : 'text-[#475569] hover:text-[#0F172A]'
                     )}
                   >
                     {item.label}
                     {isActive && (
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1A1A1B]" />
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#6D28D9]" />
                     )}
                   </Link>
                 )
               })}
             </div>
 
-            {/* Settings Icon */}
-            <Link
-              href="/profil/settings"
-              className={cn(
-                'p-2 rounded-lg transition-colors duration-200',
-                pathname === '/profil/settings'
-                  ? 'text-[#1A1A1B] bg-[rgba(26,26,27,0.05)]'
-                  : 'text-[#4B5563] hover:text-[#1A1A1B] hover:bg-[rgba(26,26,27,0.05)]'
-              )}
-              aria-label="Paramètres"
-            >
-              <Settings className="h-5 w-5" />
-            </Link>
+            {/* Badge Sanctuaire + Settings */}
+            <div className="flex items-center gap-3">
+              {/* Badge Sanctuaire Activé */}
+              <div className="hidden md:flex items-center gap-2 text-xs text-[#475569]">
+                <div className="w-2 h-2 rounded-full bg-[#6D28D9] animate-pulse" />
+                <Shield className="h-3.5 w-3.5" strokeWidth={1} />
+                <span>Sanctuaire Activé</span>
+              </div>
+              
+              {/* Settings Icon */}
+              <Link
+                href="/profil/settings"
+                className={cn(
+                  'p-2 rounded-lg transition-colors duration-200',
+                  pathname === '/profil/settings'
+                    ? 'text-[#0F172A] bg-[rgba(226,232,240,0.3)]'
+                    : 'text-[#475569] hover:text-[#0F172A] hover:bg-[rgba(226,232,240,0.3)]'
+                )}
+                aria-label="Paramètres"
+              >
+                <Settings className="h-5 w-5" />
+              </Link>
+            </div>
           </nav>
         </div>
       </header>

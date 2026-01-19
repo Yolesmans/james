@@ -15,7 +15,7 @@ export default function ProfilFuturPage() {
   if (adnCompleted === null) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FDFDFD]">
-        <div className="text-[#1A1A1B]">Chargement...</div>
+        <div className="text-[#0F172A]">Chargement...</div>
       </div>
     )
   }
@@ -31,11 +31,11 @@ export default function ProfilFuturPage() {
       <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center max-w-2xl space-y-4">
-            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
+            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#0F172A]">
               Mon Horizon
             </h1>
-            <p className="text-lg text-[#4B5563]">
-              James identifie actuellement les écosystèmes qui résonnent avec votre fréquence.
+            <p className="text-lg text-[#475569]">
+              James explore avec vous les écosystèmes qui résonnent avec votre fréquence.
             </p>
           </div>
         </div>
