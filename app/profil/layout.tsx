@@ -48,8 +48,8 @@ export default function ProfilLayout({
       <header className={`sticky ${isScrolled ? 'top-0' : 'top-16'} z-50 w-full transition-all duration-300`}>
         <div className="container max-w-6xl mx-auto px-4 md:px-6 pt-2">
           <div className="bg-axiom-surface backdrop-blur-xl border border-[rgba(226,232,240,0.4)] rounded-axiom shadow-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.98)' }}>
-            <nav className="flex items-center justify-between h-16 px-4 md:px-6">
-              {/* Navigation Tabs */}
+            <nav className="flex items-center justify-center h-16 px-4 md:px-6 relative">
+              {/* Navigation Tabs - Centrée */}
               <div className="flex items-center space-x-1 md:space-x-2 overflow-x-auto scrollbar-hide">
                 {navItems.map((item) => {
                   const isActive = pathname === item.href
@@ -75,13 +75,13 @@ export default function ProfilLayout({
                 })}
               </div>
 
-              {/* Badge Sanctuaire + Settings */}
-              <div className="flex items-center gap-3">
+              {/* Badge Sanctuaire + Settings - Positionnés à droite */}
+              <div className="absolute right-4 md:right-6 flex items-center gap-3">
                 {/* Badge Sanctuaire de données */}
-                <div className="hidden md:flex items-center gap-2 text-[12px] text-axiom-primary/60">
+                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-[rgba(226,232,240,0.4)] text-[12px] text-axiom-primary/70 shadow-sm">
                   <div className="w-2 h-2 rounded-full bg-[#A855F7] animate-pulse-slow" />
                   <Shield className="w-3 h-3 text-[#A855F7]" strokeWidth={1} />
-                  <span>Sanctuaire de données</span>
+                  <span className="font-medium">Sanctuaire de données</span>
                 </div>
                 
                 {/* Settings Icon */}

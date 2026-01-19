@@ -11,11 +11,11 @@ export default function BentoCard({ children, className, variant = 'default' }: 
   return (
     <div
       className={cn(
-        'rounded-axiom',
-        'bg-axiom-surface',
+        'rounded-[32px]',
+        'bg-white',
         'border',
-        'p-6 md:p-8',
-        variant === 'large' && 'md:p-12',
+        'p-10',
+        variant === 'large' && 'md:p-10',
         'transition-all',
         'relative overflow-hidden',
         'group',
@@ -25,6 +25,7 @@ export default function BentoCard({ children, className, variant = 'default' }: 
         'group-hover:shadow-md',
         className
       )}
+      style={{ backgroundColor: '#FFFFFF' }}
     >
       {/* Halo effect on hover */}
       <div 
