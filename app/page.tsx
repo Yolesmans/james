@@ -8,8 +8,8 @@ export default function HomePage() {
   const [mounted, setMounted] = useState(false)
   const [displayedText, setDisplayedText] = useState('')
   const [isPaused, setIsPaused] = useState(false)
-  const firstPart = "L'alignement parfait ne doit plus être du hasard,"
-  const secondPart = "mais une évidence."
+  const firstPart = "L'alignement parfait ne doit plus être du hasard..."
+  const secondPart = "mais une évidence !"
   const pauseDuration = 800 // Durée de la pause en millisecondes
 
   useEffect(() => {
