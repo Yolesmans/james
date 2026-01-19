@@ -36,7 +36,7 @@ export default function ProfilResultatsPage() {
               Mon Prisme
             </h1>
             <p className="text-lg text-[#4B5563] max-w-2xl mx-auto">
-              Découvrez les dimensions de votre profil révélées par James.
+              Découvrez les résonances de votre profil explorées avec James.
             </p>
           </div>
 
@@ -49,10 +49,10 @@ export default function ProfilResultatsPage() {
                     <span className="text-sm text-[#4B5563]">Data-viz placeholder</span>
                   </div>
                   <h3 className="text-lg font-serif font-semibold text-[#1A1A1B]">
-                    Dimension {item}
+                    Axe {item}
                   </h3>
                   <p className="text-sm text-[#4B5563]">
-                    Visualisation à venir
+                    Résonance à explorer
                   </p>
                 </div>
               </BentoCard>

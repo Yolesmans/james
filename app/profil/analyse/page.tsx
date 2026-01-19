@@ -26,14 +26,14 @@ export default function ProfilAnalysePage() {
               Mon ADN
             </h1>
             <p className="text-lg text-[#4B5563] max-w-2xl mx-auto">
-              James va analyser votre fonctionnement pour révéler votre Prisme.
+              James vous accompagne pour explorer votre fonctionnement et révéler votre Prisme.
             </p>
           </div>
 
           <BentoCard className="bg-white border-[rgba(26,26,27,0.1)]">
             <div className="space-y-6">
               <p className="text-[#4B5563]">
-                Contenu de l'analyse à venir...
+                Nous explorons ensemble votre réflexion pour révéler votre Prisme.
               </p>
               
               <div className="pt-4">

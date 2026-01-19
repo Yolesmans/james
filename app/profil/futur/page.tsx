@@ -35,7 +35,7 @@ export default function ProfilFuturPage() {
               Mon Horizon
             </h1>
             <p className="text-lg text-[#4B5563]">
-              James identifie actuellement les écosystèmes qui résonnent avec votre fréquence.
+              James explore avec vous les écosystèmes qui résonnent avec votre fréquence.
             </p>
           </div>
         </div>

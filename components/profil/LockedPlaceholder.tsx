@@ -27,7 +27,7 @@ export default function LockedPlaceholder() {
             style={{ transitionDelay: '200ms' }}
           >
             <h2 className="text-2xl md:text-3xl font-serif font-semibold text-[#1A1A1B] leading-tight">
-              Pour révéler votre Prisme, James doit d'abord explorer votre ADN.
+              Pour révéler votre Prisme, explorons ensemble votre ADN.
             </h2>
             
             <div className="pt-4">
@@ -36,7 +36,7 @@ export default function LockedPlaceholder() {
                 size="lg"
                 className="bg-[#1A1A1B] hover:bg-[#1A1A1B]/90 text-white font-medium"
               >
-                <Link href="/profil/analyse">Commencer l'analyse</Link>
+                <Link href="/profil/analyse">Commencer l'exploration avec James</Link>
               </Button>
             </div>
           </div>

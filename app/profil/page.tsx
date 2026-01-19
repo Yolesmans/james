@@ -6,14 +6,62 @@ import { getAdnCompleted } from '@/lib/adn'
 import BentoCard from '@/components/ui/BentoCard'
 import { Button } from '@/components/ui/button'
 
+const MANIFESTE_STORAGE_KEY = 'axiom_profil_manifeste_vu'
+
 export default function ProfilPage() {
   const [mounted, setMounted] = useState(false)
   const [adnCompleted, setAdnCompleted] = useState(false)
+  const [showManifeste, setShowManifeste] = useState(false)
 
   useEffect(() => {
     setMounted(true)
     setAdnCompleted(getAdnCompleted())
+    
+    // Vérifier si le manifeste a déjà été vu
+    if (typeof window !== 'undefined') {
+      const manifesteVu = localStorage.getItem(MANIFESTE_STORAGE_KEY)
+      if (!manifesteVu) {
+        setShowManifeste(true)
+      }
+    }
   }, [])
+
+  const handleEnterEspace = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(MANIFESTE_STORAGE_KEY, 'true')
+    }
+    setShowManifeste(false)
+  }
+
+  // Afficher le manifeste d'entrée si première visite
+  if (showManifeste) {
+    return (
+      <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center px-4">
+        <div className="max-w-2xl text-center space-y-8">
+          <div className="space-y-6">
+            <p className="text-xl md:text-2xl font-serif font-semibold text-[#1A1A1B] leading-relaxed">
+              Ici, le monde extérieur n'existe plus.
+              <br />
+              Ce que vous confiez à James est protégé, crypté,
+              <br />
+              et n'appartient qu'à vous.
+              <br />
+              Soyez authentique,
+              <br />
+              vous êtes dans votre sanctuaire.
+            </p>
+          </div>
+          <Button
+            onClick={handleEnterEspace}
+            size="lg"
+            className="bg-[#1A1A1B] hover:bg-[#1A1A1B]/90 text-white font-medium"
+          >
+            Entrer dans mon espace
+          </Button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] pb-20">

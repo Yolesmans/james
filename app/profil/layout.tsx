@@ -20,9 +20,14 @@ export default function ProfilLayout({
   const pathname = usePathname()
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD]">
+    <div className="min-h-screen bg-[#FDFDFD] relative">
+      {/* Bulle de confiance - Lueur améthyste discrète */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[rgba(139,92,246,0.02)] via-transparent to-[rgba(139,92,246,0.02)]" />
+      </div>
+      
       {/* Header Navigation */}
-      <header className="sticky top-0 z-40 w-full border-b border-[rgba(26,26,27,0.08)] bg-[rgba(253,253,253,0.75)] backdrop-blur-[12px]">
+      <header className="sticky top-0 z-40 w-full border-b border-[rgba(26,26,27,0.08)] bg-[rgba(253,253,253,0.75)] backdrop-blur-[12px] relative">
         <div className="container max-w-6xl mx-auto px-4 md:px-6">
           <nav className="flex items-center justify-between h-16">
             {/* Navigation Tabs */}
@@ -67,7 +72,9 @@ export default function ProfilLayout({
       </header>
 
       {/* Page Content */}
-      {children}
+      <div className="relative z-10">
+        {children}
+      </div>
     </div>
   )
 }
