@@ -68,7 +68,7 @@ export default function HomePage() {
       {/* Logo AXIOM - Position fixed en haut à gauche */}
       <div
         className={`fixed top-6 left-6 z-10 font-serif text-3xl md:text-4xl font-semibold text-[#1A1A1B] transition-all duration-[900ms] ease-out ${
-          mounted ? 'opacity-85 translate-y-0' : 'opacity-0 translate-y-3'
+          mounted ? 'opacity-85 translate-y-0' : 'opacity-85 translate-y-0'
         }`}
       >
         AXIOM
@@ -78,13 +78,13 @@ export default function HomePage() {
         {/* Manifeste - Phrase centrale */}
         <div
           className={`text-center mb-16 transition-all duration-[900ms] ease-out ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'
           }`}
           style={{ transitionDelay: '200ms' }}
         >
           <p className="font-serif font-semibold text-xl md:text-2xl text-[#1A1A1B] tracking-tight whitespace-pre-line">
-            {displayedText}
-            {(displayedText.length < firstPart.length || 
+            {displayedText || firstPart}
+            {((displayedText.length < firstPart.length && displayedText.length > 0) || 
               isPaused ||
               (displayedText.includes('\n') && displayedText.length < firstPart.length + 1 + secondPart.length)) && (
               <span className="animate-pulse">|</span>
@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* Cartes - Votre Profil / Votre Organisation */}
         <div
           className={`grid md:grid-cols-2 gap-6 transition-all duration-[900ms] ease-out ${
-            mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+            mounted ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'
           }`}
           style={{ transitionDelay: '400ms' }}
         >
