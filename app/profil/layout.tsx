@@ -19,8 +19,13 @@ export default function ProfilLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,6 +46,10 @@ export default function ProfilLayout({
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [lastScrollY])
+
+  if (!mounted) {
+    return <div className="min-h-screen bg-axiom-bg">{children}</div>
+  }
 
   return (
     <div className="min-h-screen bg-axiom-bg">

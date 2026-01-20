@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import OffreHeader from '@/components/organisation/OffreHeader'
 import PulseBarSegmented from '@/components/organisation/PulseBarSegmented'
@@ -28,7 +28,7 @@ import {
 import * as Dialog from '@radix-ui/react-dialog'
 import { Archive } from 'lucide-react'
 
-export default function OrganisationDashboard() {
+function OrganisationDashboardContent() {
   const searchParams = useSearchParams()
   const offreIdParam = searchParams.get('offreId')
 
@@ -381,5 +381,17 @@ export default function OrganisationDashboard() {
         </Dialog.Portal>
       </Dialog.Root>
     </div>
+  )
+}
+
+export default function OrganisationDashboard() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-axiom-bg flex items-center justify-center">
+        <div className="text-axiom-secondary">Chargement...</div>
+      </div>
+    }>
+      <OrganisationDashboardContent />
+    </Suspense>
   )
 }

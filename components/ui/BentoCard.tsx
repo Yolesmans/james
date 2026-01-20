@@ -1,13 +1,14 @@
-import { ReactNode } from 'react'
+import { ReactNode, CSSProperties } from 'react'
 import { cn } from '@/lib/utils'
 
 interface BentoCardProps {
   children: ReactNode
   className?: string
   variant?: 'default' | 'large'
+  style?: CSSProperties
 }
 
-export default function BentoCard({ children, className, variant = 'default' }: BentoCardProps) {
+export default function BentoCard({ children, className, variant = 'default', style }: BentoCardProps) {
   return (
     <div
       className={cn(
@@ -25,7 +26,7 @@ export default function BentoCard({ children, className, variant = 'default' }: 
         'group-hover:shadow-md',
         className
       )}
-      style={{ backgroundColor: '#FFFFFF' }}
+      style={{ backgroundColor: '#FFFFFF', ...style }}
     >
       {/* Halo effect on hover */}
       <div 

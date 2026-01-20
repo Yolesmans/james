@@ -19,8 +19,13 @@ export default function OrganisationLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +45,10 @@ export default function OrganisationLayout({
     return () => window.removeEventListener('scroll', handleScroll)
   }, [lastScrollY])
 
+  if (!mounted) {
+    return <div className="min-h-screen bg-axiom-bg">{children}</div>
+  }
+
   return (
     <div className="min-h-screen bg-axiom-bg">
       {/* Header Navigation - Barre flottante premium */}
@@ -50,7 +59,7 @@ export default function OrganisationLayout({
               {/* Navigation Tabs - Centrée */}
               <div className="flex items-center space-x-1 md:space-x-2 overflow-x-auto scrollbar-hide">
                 {navItems.map((item) => {
-                  const isActive = pathname === item.href || (item.href !== '/organisation' && pathname.startsWith(item.href))
+                  const isActive = pathname === item.href || (item.href !== '/organisation' && pathname?.startsWith(item.href))
                   return (
                     <Link
                       key={item.href}
