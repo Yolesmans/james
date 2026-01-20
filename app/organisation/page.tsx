@@ -178,63 +178,135 @@ export default function OrganisationDashboard() {
           />
 
           {/* 2. BLOC CENTRAL — STATUT GLOBAL DE L'OFFRE */}
-          <div className="space-y-6">
-            {/* 2.1. Pulse Bar */}
-            <div className="bg-white rounded-axiom border border-[rgba(226,232,240,0.4)] p-6 hover:border-axiom-amethyst/10 transition-colors">
-              <h2 className="font-serif text-lg font-semibold text-axiom-primary mb-4">
-                Statut Global
-              </h2>
-              <PulseBarSegmented
-                profilsRecus={profilsRecus}
-                profilsContactes={profilsContactes}
-                profilsEnCours={profilsEnCours}
-                alignementsTermines={alignementsTermines}
-                interetsExprimes={interetsExprimes}
-                total={profilsRecus}
-              />
+          <div className="space-y-6 md:space-y-8">
+            {/* 2.1. Statut Global avec indicateur circulaire */}
+            <div className="bg-white rounded-axiom border border-[rgba(226,232,240,0.4)] p-6 md:p-8 hover:border-axiom-amethyst/20 hover:shadow-md transition-all relative overflow-hidden group axiom-glow-hover">
+              {/* Halo effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-sanctuary-glow" />
+              
+              <div className="relative z-10">
+                <h2 className="font-serif text-xl md:text-2xl font-semibold text-axiom-primary mb-6 md:mb-8">
+                  Statut Global
+                </h2>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+                  {/* Indicateur circulaire de progression */}
+                  <div className="flex items-center justify-center">
+                    <div className="relative w-32 h-32 md:w-40 md:h-40">
+                      <svg 
+                        className="transform -rotate-90 w-full h-full" 
+                        viewBox="0 0 128 128"
+                      >
+                        <circle
+                          cx="64"
+                          cy="64"
+                          r="56"
+                          stroke="rgba(226, 232, 240, 0.3)"
+                          strokeWidth="8"
+                          fill="none"
+                        />
+                        <circle
+                          cx="64"
+                          cy="64"
+                          r="56"
+                          stroke="url(#statutGradient)"
+                          strokeWidth="8"
+                          fill="none"
+                          strokeDasharray={`${2 * Math.PI * 56}`}
+                          strokeDashoffset={`${2 * Math.PI * 56 * (1 - (profilsContactes / Math.max(profilsRecus, 1)))}`}
+                          strokeLinecap="round"
+                          className="transition-all duration-1000 ease-out"
+                        />
+                        <defs>
+                          <linearGradient id="statutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#6D28D9" />
+                            <stop offset="100%" stopColor="#A855F7" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center">
+                        <span className="text-2xl md:text-3xl font-serif font-semibold text-axiom-primary">
+                          {profilsRecus > 0 ? Math.round((profilsContactes / profilsRecus) * 100) : 0}%
+                        </span>
+                        <span className="text-xs md:text-sm text-axiom-secondary mt-1">
+                          Contactés
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Barre de progression segmentée */}
+                  <div className="space-y-4">
+                    <PulseBarSegmented
+                      profilsRecus={profilsRecus}
+                      profilsContactes={profilsContactes}
+                      profilsEnCours={profilsEnCours}
+                      alignementsTermines={alignementsTermines}
+                      interetsExprimes={interetsExprimes}
+                      total={profilsRecus}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* 2.2. Tuiles KPI */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* 2.2. Tuiles KPI avec indicateurs de progression */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
               <KPITile
                 icon={<IconUsers />}
                 value={kpis.total}
                 label="Profils reçus"
+                total={kpis.total}
+                showProgress={false}
               />
               <KPITile
                 icon={<IconMail />}
                 value={kpis.contactes}
                 label="Profils contactés"
+                total={kpis.total}
+                showProgress={true}
               />
               <KPITile
                 icon={<IconCheckCircle />}
                 value={kpis.profilsCompletes}
                 label="Profils complétés"
+                total={kpis.total}
+                showProgress={true}
               />
               <KPITile
                 icon={<IconTarget />}
                 value={kpis.alignementsTermines}
                 label="Alignements terminés"
+                total={kpis.total}
+                showProgress={true}
               />
               <KPITile
                 icon={<IconHeart />}
                 value={kpis.interetsConfirmes}
                 label="Intérêt confirmé"
+                total={kpis.total}
+                showProgress={true}
               />
               <KPITile
                 icon={<IconClock />}
                 value={kpis.interetsPlusTard}
                 label="Intérêt plus tard"
+                total={kpis.total}
+                showProgress={true}
               />
               <KPITile
                 icon={<IconCalendar />}
                 value={kpis.entretiensPlanifies}
                 label="Entretiens planifiés"
+                total={kpis.total}
+                showProgress={true}
               />
               <KPITile
                 icon={<IconXCircle />}
                 value={kpis.noShow}
                 label="No-show détectés"
+                total={kpis.total}
+                showProgress={true}
               />
             </div>
           </div>
