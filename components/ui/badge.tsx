@@ -16,7 +16,7 @@ const badgeVariants = cva(
         outline: "text-foreground",
         success: "border-transparent bg-axiom-amethyst text-white",
         warning: "border-transparent bg-orange-500 text-white",
-        info: "border-transparent bg-axiom-royal text-white",
+        info: "border-transparent bg-axiom-heliotrope text-white",
       },
     },
     defaultVariants: {

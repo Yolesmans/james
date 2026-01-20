@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Calendar, MessageSquare, Link2 } from 'lucide-react'
+import { Calendar, MessageSquare, Link2, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { ProfilResonance } from '@/lib/organisation-data'
 
@@ -84,10 +84,24 @@ export default function ProfilsTable({
             {/* Colonne 4: Intention */}
             <div className="flex-1 text-center">
               {profil.intention === 'confirme' && (
-                <span className="text-lg">✅</span>
+                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-axiom-amethyst/20 to-axiom-heliotrope/20 flex items-center justify-center mx-auto">
+                  <svg
+                    className="w-3 h-3 text-axiom-amethyst"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
               )}
               {profil.intention === 'plus-tard' && (
-                <span className="text-lg">🟡</span>
+                <Clock className="w-5 h-5 text-axiom-amethyst mx-auto" strokeWidth={1.5} />
               )}
               {!profil.intention && (
                 <span className="text-axiom-secondary text-sm">—</span>

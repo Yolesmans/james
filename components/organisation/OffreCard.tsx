@@ -48,7 +48,7 @@ export default function OffreCard({ offre, poste, manager, onGenererLiens }: Off
           {offre.nouveauxInteretsConfirmes > 0 && (
             <Badge 
               variant="success" 
-              className="animate-pulse-slow"
+              className="bg-gradient-to-r from-axiom-amethyst to-axiom-heliotrope text-white animate-pulse-slow shadow-sm"
             >
               {offre.nouveauxInteretsConfirmes} nouveau{offre.nouveauxInteretsConfirmes > 1 ? 'x' : ''}
             </Badge>

@@ -112,7 +112,7 @@ export const mockOffres: Offre[] = [
     managerId: '1',
     statut: 'active',
     createdAt: new Date('2024-01-15'),
-    nouveauxInteretsConfirmes: 3,
+    nouveauxInteretsConfirmes: 47,
   },
   {
     id: '2',
@@ -120,7 +120,7 @@ export const mockOffres: Offre[] = [
     managerId: '2',
     statut: 'active',
     createdAt: new Date('2024-01-20'),
-    nouveauxInteretsConfirmes: 0,
+    nouveauxInteretsConfirmes: 12,
   },
   {
     id: '3',
@@ -128,7 +128,7 @@ export const mockOffres: Offre[] = [
     managerId: '3',
     statut: 'veille',
     createdAt: new Date('2024-01-10'),
-    nouveauxInteretsConfirmes: 1,
+    nouveauxInteretsConfirmes: 8,
   },
   {
     id: '4',
@@ -136,102 +136,163 @@ export const mockOffres: Offre[] = [
     managerId: '4',
     statut: 'active',
     createdAt: new Date('2024-01-25'),
-    nouveauxInteretsConfirmes: 0,
+    nouveauxInteretsConfirmes: 23,
   },
 ]
 
+// Étiquettes de personnalité cohérentes
+const etiquettesPersonnalite = [
+  'Architecte Visionnaire',
+  'Créateur Méthodique',
+  'Explorateur Curieux',
+  'Analyste Prudent',
+  'Innovateur Passionné',
+  'Stratège Analytique',
+  'Artiste Conceptuel',
+  'Pionnier Audacieux',
+  'Orchestrateur Équilibré',
+  'Concepteur Pragmatique',
+  'Visionnaire Tactique',
+  'Créateur Systémique',
+  'Explorateur Méthodique',
+  'Analyste Créatif',
+  'Innovateur Structuré',
+]
+
+// Fonction pour générer des profils réalistes avec seed pour reproductibilité
+function generateProfils(
+  count: number,
+  seed: number = 42,
+  options: {
+    contacteRatio?: number
+    alignementTermineRatio?: number
+    interetConfirmeRatio?: number
+    interetPlusTardRatio?: number
+    entretienPlanifieRatio?: number
+    noShowRatio?: number
+  } = {}
+): ProfilResonance[] {
+  const {
+    contacteRatio = 0.45,
+    alignementTermineRatio = 0.40,
+    interetConfirmeRatio = 0.15,
+    interetPlusTardRatio = 0.05,
+    entretienPlanifieRatio = 0.08,
+    noShowRatio = 0.02,
+  } = options
+
+  const profils: ProfilResonance[] = []
+  let currentSeed = seed
+
+  // Simple PRNG pour reproductibilité
+  function random() {
+    currentSeed = (currentSeed * 9301 + 49297) % 233280
+    return currentSeed / 233280
+  }
+
+  // Générer des IDs uniques
+  const usedIds = new Set<number>()
+  function getUniqueId() {
+    let id
+    do {
+      id = Math.floor(random() * 9999) + 1
+    } while (usedIds.has(id))
+    usedIds.add(id)
+    return id
+  }
+
+  for (let i = 0; i < count; i++) {
+    const id = `p${i + 1}`
+    const uniqueId = getUniqueId()
+    const identiteAnonyme = `Profil #${String(uniqueId).padStart(4, '0')}`
+    
+    // Score d'alignement réaliste (distribution normale centrée sur 75)
+    const scoreAlignement = Math.max(45, Math.min(98, Math.round(75 + (random() - 0.5) * 30)))
+    
+    const etiquettePersonnalite = etiquettesPersonnalite[
+      Math.floor(random() * etiquettesPersonnalite.length)
+    ]
+
+    // Déterminer l'état du profil
+    const alignementTermine = random() < alignementTermineRatio
+    const contacte = random() < contacteRatio || alignementTermine
+    
+    let intention: 'confirme' | 'plus-tard' | null = null
+    if (alignementTermine) {
+      const rand = random()
+      // Sur les alignements terminés, ~37.5% ont un intérêt confirmé, ~12.5% "plus tard"
+      if (rand < interetConfirmeRatio / alignementTermineRatio) {
+        intention = 'confirme'
+      } else if (rand < (interetConfirmeRatio + interetPlusTardRatio) / alignementTermineRatio) {
+        intention = 'plus-tard'
+      }
+    }
+
+    const enCours = !alignementTermine && random() < 0.6
+    // Entretien planifié si intérêt confirmé (ratio parmi les confirmés)
+    const entretienPlanifie = intention === 'confirme' && random() < (entretienPlanifieRatio / (interetConfirmeRatio / alignementTermineRatio))
+    // No-show si entretien planifié (ratio parmi les planifiés)
+    const noShow = entretienPlanifie && random() < (noShowRatio / entretienPlanifieRatio)
+
+    profils.push({
+      id,
+      identiteAnonyme,
+      scoreAlignement,
+      etiquettePersonnalite,
+      intention,
+      contacte,
+      enCours,
+      alignementTermine,
+      entretienPlanifie,
+      noShow,
+    })
+  }
+
+  return profils
+}
+
+// Génération de profils avec volumes réalistes
+// Utilisation de seeds différents pour chaque offre pour varier les distributions
 export const mockProfilsResonance: Record<string, ProfilResonance[]> = {
-  '1': [
-    {
-      id: 'p1',
-      identiteAnonyme: 'Profil #842',
-      scoreAlignement: 87,
-      etiquettePersonnalite: 'Architecte Visionnaire',
-      intention: 'confirme',
-      contacte: true,
-      enCours: false,
-      alignementTermine: true,
-      entretienPlanifie: true,
-      noShow: false,
-    },
-    {
-      id: 'p2',
-      identiteAnonyme: 'Profil #156',
-      scoreAlignement: 92,
-      etiquettePersonnalite: 'Créateur Méthodique',
-      intention: 'confirme',
-      contacte: true,
-      enCours: false,
-      alignementTermine: true,
-      entretienPlanifie: false,
-      noShow: false,
-    },
-    {
-      id: 'p3',
-      identiteAnonyme: 'Profil #423',
-      scoreAlignement: 75,
-      etiquettePersonnalite: 'Explorateur Curieux',
-      intention: 'plus-tard',
-      contacte: false,
-      enCours: true,
-      alignementTermine: false,
-      entretienPlanifie: false,
-      noShow: false,
-    },
-    {
-      id: 'p4',
-      identiteAnonyme: 'Profil #789',
-      scoreAlignement: 68,
-      etiquettePersonnalite: 'Analyste Prudent',
-      intention: null,
-      contacte: false,
-      enCours: true,
-      alignementTermine: false,
-      entretienPlanifie: false,
-      noShow: false,
-    },
-    {
-      id: 'p5',
-      identiteAnonyme: 'Profil #234',
-      scoreAlignement: 95,
-      etiquettePersonnalite: 'Innovateur Passionné',
-      intention: 'confirme',
-      contacte: true,
-      enCours: false,
-      alignementTermine: true,
-      entretienPlanifie: true,
-      noShow: true,
-    },
-  ],
-  '2': [
-    {
-      id: 'p6',
-      identiteAnonyme: 'Profil #567',
-      scoreAlignement: 80,
-      etiquettePersonnalite: 'Stratège Analytique',
-      intention: null,
-      contacte: false,
-      enCours: true,
-      alignementTermine: false,
-      entretienPlanifie: false,
-      noShow: false,
-    },
-  ],
-  '3': [
-    {
-      id: 'p7',
-      identiteAnonyme: 'Profil #891',
-      scoreAlignement: 88,
-      etiquettePersonnalite: 'Artiste Conceptuel',
-      intention: 'confirme',
-      contacte: true,
-      enCours: false,
-      alignementTermine: true,
-      entretienPlanifie: false,
-      noShow: false,
-    },
-  ],
-  '4': [],
+  // Offre 1 : Développeur Full-Stack - 2000+ profils
+  '1': generateProfils(2147, 12345, {
+    contacteRatio: 0.48,
+    alignementTermineRatio: 0.42,
+    interetConfirmeRatio: 0.16,
+    interetPlusTardRatio: 0.06,
+    entretienPlanifieRatio: 0.09,
+    noShowRatio: 0.025,
+  }),
+  
+  // Offre 2 : Product Manager - 450 profils
+  '2': generateProfils(450, 23456, {
+    contacteRatio: 0.52,
+    alignementTermineRatio: 0.45,
+    interetConfirmeRatio: 0.18,
+    interetPlusTardRatio: 0.05,
+    entretienPlanifieRatio: 0.10,
+    noShowRatio: 0.02,
+  }),
+  
+  // Offre 3 : Designer UX/UI - 320 profils
+  '3': generateProfils(320, 34567, {
+    contacteRatio: 0.44,
+    alignementTermineRatio: 0.38,
+    interetConfirmeRatio: 0.14,
+    interetPlusTardRatio: 0.07,
+    entretienPlanifieRatio: 0.08,
+    noShowRatio: 0.03,
+  }),
+  
+  // Offre 4 : Data Engineer - 680 profils
+  '4': generateProfils(680, 45678, {
+    contacteRatio: 0.46,
+    alignementTermineRatio: 0.41,
+    interetConfirmeRatio: 0.15,
+    interetPlusTardRatio: 0.05,
+    entretienPlanifieRatio: 0.08,
+    noShowRatio: 0.02,
+  }),
 }
 
 // Fonctions utilitaires
@@ -264,6 +325,8 @@ export function getKPIsByOffreId(offreId: string) {
   const noShow = profils.filter(p => p.noShow).length
   const bruit = profils.filter(p => !p.alignementTermine).length
   const valeur = profils.filter(p => p.alignementTermine).length
+  const profilsCompletes = profils.filter(p => p.alignementTermine).length
+  const interetsExprimes = interetsConfirmes + interetsPlusTard
 
   return {
     total,
@@ -276,5 +339,7 @@ export function getKPIsByOffreId(offreId: string) {
     noShow,
     bruit,
     valeur,
+    profilsCompletes,
+    interetsExprimes,
   }
 }

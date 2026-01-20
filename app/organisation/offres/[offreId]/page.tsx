@@ -18,7 +18,7 @@ import {
   getKPIsByOffreId,
   type Offre 
 } from '@/lib/organisation-data'
-import { CheckCircle2, X, Archive } from 'lucide-react'
+import { CheckCircle2, X, Archive, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export default function OffreDetailPage() {
@@ -210,7 +210,22 @@ export default function OffreDetailPage() {
                 <Card>
                   <CardContent className="pt-6">
                     <div className="text-2xl font-semibold text-axiom-primary flex items-center gap-2">
-                      ✅ {kpis.interetsConfirmes}
+                      <div className="w-6 h-6 rounded-full bg-axiom-amethyst/20 flex items-center justify-center">
+                        <svg
+                          className="w-4 h-4 text-axiom-amethyst"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                      </div>
+                      {kpis.interetsConfirmes}
                     </div>
                     <div className="text-sm text-axiom-secondary mt-1">
                       Intérêts confirmés
@@ -220,7 +235,8 @@ export default function OffreDetailPage() {
                 <Card>
                   <CardContent className="pt-6">
                     <div className="text-2xl font-semibold text-axiom-primary flex items-center gap-2">
-                      🟡 {kpis.interetsPlusTard}
+                      <Clock className="w-6 h-6 text-axiom-amethyst" strokeWidth={1.5} />
+                      {kpis.interetsPlusTard}
                     </div>
                     <div className="text-sm text-axiom-secondary mt-1">
                       Intérêts "Plus tard"
