@@ -1,43 +1,37 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getAdnCompleted } from '@/lib/adn'
-import LockedPlaceholder from '@/components/profil/LockedPlaceholder'
+import Link from 'next/link'
+import BentoCard from '@/components/ui/BentoCard'
 
 export default function ProfilFuturPage() {
-  const [adnCompleted, setAdnCompleted] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    setAdnCompleted(getAdnCompleted())
-  }, [])
-
-  // Afficher le placeholder pendant le chargement
-  if (adnCompleted === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#FDFDFD]">
-        <div className="text-[#1A1A1B]">Chargement...</div>
-      </div>
-    )
-  }
-
-  // Si l'ADN n'est pas complété, afficher le placeholder verrouillé
-  if (!adnCompleted) {
-    return <LockedPlaceholder />
-  }
-
-  // Si l'ADN est complété, afficher le contenu
   return (
-    <div className="min-h-screen bg-[#FDFDFD] pb-20">
-      <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center max-w-2xl space-y-4">
-            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
-              Mon Horizon
-            </h1>
-            <p className="text-lg text-[#4B5563]">
-              James explore avec vous les écosystèmes qui résonnent avec votre fréquence.
-            </p>
-          </div>
+    <div className="min-h-screen bg-axiom-bg pb-20">
+      <div className="container max-w-4xl mx-auto px-4 pt-4 pb-12 md:pb-24">
+        <div className="space-y-8">
+          <BentoCard>
+            <div className="space-y-6 text-center">
+              <h1 className="text-2xl md:text-3xl font-serif font-semibold text-axiom-primary">
+                Votre Horizon se dessine.
+              </h1>
+              <p className="text-sm text-axiom-secondary">
+                L'Horizon n'est accessible
+                qu'une fois le Prisme révélé.
+              </p>
+              <p className="text-xs text-axiom-secondary">
+                Il ne s'agit pas d'un métier,
+                mais d'un champ de cohérence possible.
+              </p>
+              
+              <div className="pt-4">
+                <Link
+                  href="/candidate/matching"
+                  className="inline-block bg-gradient-to-r from-[#6D28D9] to-[#A855F7] text-white rounded-2xl px-6 py-3 font-medium"
+                >
+                  Découvrir les entreprises compatibles
+                </Link>
+              </div>
+            </div>
+          </BentoCard>
         </div>
       </div>
     </div>

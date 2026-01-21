@@ -6,7 +6,7 @@ export default function BentoGrid() {
     <section className="py-20 md:py-32 px-4">
       <div className="container max-w-6xl mx-auto space-y-12">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
+          <h2 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">
             {copy.home.probleme.title}
           </h2>
         </div>
@@ -14,7 +14,7 @@ export default function BentoGrid() {
         <div className="grid md:grid-cols-3 gap-6">
           {copy.home.probleme.cards.map((card, index) => (
             <BentoCard key={index}>
-              <h3 className="text-xl font-serif font-semibold text-[#1A1A1B] mb-2">
+              <h3 className="text-xl font-serif font-semibold text-axiom-primary mb-2">
                 {card}
               </h3>
             </BentoCard>
@@ -22,7 +22,7 @@ export default function BentoGrid() {
         </div>
 
         <div className="text-center pt-8">
-          <p className="text-xl md:text-2xl font-serif font-semibold text-[#1A1A1B] whitespace-pre-line">
+          <p className="text-xl md:text-2xl font-serif font-semibold text-axiom-primary whitespace-pre-line">
             {copy.home.probleme.punchline}
           </p>
         </div>

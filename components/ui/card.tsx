@@ -8,11 +8,17 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "rounded-axiom border border-[rgba(226,232,240,0.4)] bg-axiom-surface text-axiom-primary shadow-sm transition-all duration-300 hover:border-axiom-amethyst/20 hover:shadow-md relative overflow-hidden group",
       className
     )}
     {...props}
-  />
+  >
+    {/* Halo effect on hover */}
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-sanctuary-glow" style={{ zIndex: 0 }} />
+    <div className="relative" style={{ zIndex: 1 }}>
+      {props.children}
+    </div>
+  </div>
 ))
 Card.displayName = "Card"
 

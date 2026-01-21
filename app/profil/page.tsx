@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getAdnCompleted } from '@/lib/adn'
 import BentoCard from '@/components/ui/BentoCard'
-import { Button } from '@/components/ui/button'
+import { Lock } from 'lucide-react'
 
 const MANIFESTE_STORAGE_KEY = 'axiom_profil_manifeste_vu'
 
@@ -64,63 +64,97 @@ export default function ProfilPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] pb-20">
-      <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
-        <div className="space-y-8">
-          {/* Carte de bienvenue */}
-          <BentoCard className="bg-white border-[rgba(26,26,27,0.1)]">
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
-                Bienvenue dans votre espace
-              </h1>
-              <p className="text-lg text-[#4B5563]">
-                Explorez votre ADN, découvrez votre Prisme et visualisez votre Horizon.
+    <div className="min-h-screen bg-axiom-bg pb-20">
+      <div className="container max-w-6xl mx-auto px-4 pt-4 pb-12 md:pb-24">
+        <div className="grid md:grid-cols-2 gap-6 mb-6">
+          {/* Carte principale (gauche) */}
+          <BentoCard>
+            <div className="space-y-6">
+              <div>
+                <h1 className="text-2xl md:text-3xl font-serif font-semibold text-axiom-primary mb-2">
+                  Bienvenue chez vous.<br />
+                  Ravi de vous revoir, [Prénom].
+                </h1>
+              </div>
+              
+              {/* Cercle de progression violet */}
+              <div className="flex items-center justify-center py-6">
+                <div className="relative w-32 h-32">
+                  <svg className="transform -rotate-90 w-32 h-32">
+                    <circle
+                      cx="64"
+                      cy="64"
+                      r="56"
+                      stroke="rgba(226, 232, 240, 0.3)"
+                      strokeWidth="8"
+                      fill="none"
+                    />
+                    <circle
+                      cx="64"
+                      cy="64"
+                      r="56"
+                      stroke="url(#gradient)"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeDasharray={`${2 * Math.PI * 56}`}
+                      strokeDashoffset={`${2 * Math.PI * 56 * (1 - 0.4)}`}
+                      strokeLinecap="round"
+                    />
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#6D28D9" />
+                        <stop offset="100%" stopColor="#A855F7" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-2xl font-serif font-semibold text-axiom-primary">40 %</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-sm text-axiom-secondary text-center">
+                Votre exploration est en cours.
               </p>
+
+              <div className="pt-2">
+                <Link 
+                  href="/profil/analyse"
+                  className="inline-block w-full text-center bg-gradient-to-r from-[#6D28D9] to-[#A855F7] text-white rounded-2xl px-6 py-3 font-medium"
+                >
+                  Reprendre l'analyse avec James
+                </Link>
+              </div>
             </div>
           </BentoCard>
 
-          {/* Widget de progression ADN */}
-          <BentoCard className="bg-white border-[rgba(26,26,27,0.1)]">
+          {/* Carte secondaire (droite) */}
+          <BentoCard>
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-serif font-semibold text-[#1A1A1B]">
-                  Progression de votre ADN
+              <div className="flex items-center gap-3 mb-4">
+                <Lock className="w-5 h-5 text-axiom-amethyst" strokeWidth={1} />
+                <h2 className="text-xl font-serif font-semibold text-axiom-primary">
+                  Sanctuaire de données
                 </h2>
-                <span className="text-sm text-[#4B5563]">
-                  {adnCompleted ? 'Complété' : 'En cours'}
-                </span>
               </div>
-              
-              {/* Barre de progression */}
-              <div className="w-full h-2 bg-[rgba(26,26,27,0.08)] rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-[#1A1A1B] rounded-full transition-all duration-800 ease-out"
-                  style={{ width: mounted ? (adnCompleted ? '100%' : '40%') : '0%' }}
-                />
-              </div>
-
-              <p className="text-sm text-[#4B5563]">
-                {adnCompleted
-                  ? 'Votre ADN est complété. Vous pouvez maintenant accéder à votre Prisme et votre Horizon.'
-                  : 'Continuez votre analyse pour débloquer votre Prisme et votre Horizon.'}
+              <p className="text-sm text-axiom-secondary">
+                Vos réponses vous appartiennent.
+                Elles ne sont ni revendues, ni exploitées, ni interprétées sans vous.
               </p>
-
-              {!adnCompleted && (
-                <div className="pt-2">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-[#1A1A1B] hover:bg-[#1A1A1B]/90 text-white font-medium"
-                  >
-                    <Link href="/profil/analyse">
-                      Reprendre l'analyse avec James
-                    </Link>
-                  </Button>
-                </div>
-              )}
             </div>
           </BentoCard>
         </div>
+
+        {/* Carte inférieure large (verrouillée) */}
+        <BentoCard className="relative overflow-hidden" style={{ filter: 'blur(2px)', opacity: 0.7 }}>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#6D28D9]/10 to-[#A855F7]/10" />
+          <div className="relative z-10 flex items-center justify-center gap-4 py-8">
+            <Lock className="w-6 h-6 text-axiom-amethyst" strokeWidth={1} />
+            <p className="text-lg font-serif font-semibold text-axiom-primary">
+              Le Prisme attend votre vérité.
+            </p>
+          </div>
+        </BentoCard>
       </div>
     </div>
   )

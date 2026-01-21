@@ -1,65 +1,63 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { setAdnCompleted } from '@/lib/adn'
+import { getAdnCompleted, setAdnCompleted } from '@/lib/adn'
 import BentoCard from '@/components/ui/BentoCard'
-import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function ProfilAnalysePage() {
   const [mounted, setMounted] = useState(false)
+  const [adnCompleted, setAdnCompletedState] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    setAdnCompletedState(getAdnCompleted())
   }, [])
 
   const handleCompleteAdn = () => {
     setAdnCompleted(true)
-    // Optionnel: redirection ou notification
+    setAdnCompletedState(true)
   }
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] pb-20">
-      <div className="container max-w-4xl mx-auto px-4 py-12 md:py-24">
+    <div className="min-h-screen bg-axiom-bg pb-20">
+      <div className="container max-w-4xl mx-auto px-4 pt-4 pb-12 md:pb-24">
         <div className="space-y-8">
           <div className="text-center space-y-4">
-            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-[#1A1A1B]">
+            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-axiom-primary">
               Mon ADN
             </h1>
-            <p className="text-lg text-[#4B5563] max-w-2xl mx-auto">
-              James vous accompagne pour explorer votre fonctionnement et révéler votre Prisme.
+            <p className="text-lg text-axiom-secondary max-w-2xl mx-auto">
+              James vous accompagne pour explorer votre fonctionnement
+              et révéler votre Prisme.
             </p>
           </div>
 
-          <BentoCard className="bg-white border-[rgba(26,26,27,0.1)]">
+          <BentoCard>
             <div className="space-y-6">
-              <p className="text-[#4B5563]">
-                Nous explorons ensemble votre réflexion pour révéler votre Prisme.
+              <p className="text-axiom-secondary">
+                Nous explorons ensemble votre manière de réfléchir,
+                de décider et d'interagir avec le réel.
               </p>
               
               <div className="pt-4">
-                <Button
+                <Link
+                  href="/profil/analyse"
                   onClick={handleCompleteAdn}
-                  size="lg"
-                  className="bg-[#1A1A1B] hover:bg-[#1A1A1B]/90 text-white font-medium"
+                  className="inline-block bg-gradient-to-r from-[#6D28D9] to-[#A855F7] text-white rounded-2xl px-6 py-3 font-medium"
                 >
-                  Compléter mon ADN
-                </Button>
+                  {adnCompleted ? 'Continuer mon ADN' : 'Compléter mon ADN'}
+                </Link>
               </div>
             </div>
           </BentoCard>
+
+          <p className="text-xs text-axiom-secondary text-center">
+            Il n'y a pas de bonne réponse.
+            Seulement la vôtre.
+          </p>
         </div>
       </div>
-
-      {/* Bandeau de confidentialité */}
-      {mounted && (
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-t border-[rgba(26,26,27,0.1)] px-4 py-3">
-          <div className="container max-w-4xl mx-auto">
-            <p className="text-xs md:text-sm text-[#4B5563] text-center">
-              Axiom est un sanctuaire. Vos données sont cryptées, privées et jamais vendues. Vous restez maître de votre ADN.
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

@@ -47,15 +47,32 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        axiom: {
+          bg: "#FDFDFD",
+          surface: "#FFFFFF",
+          primary: "#0F172A",
+          secondary: "#64748B",
+          amethyst: "#6D28D9",
+          heliotrope: "#A855F7",
+          night: "#1E1B4B",
+          royal: "#4338CA",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        axiom: "24px",
       },
       fontFamily: {
         serif: ['Instrument Serif', 'serif'],
+        sans: ['Inter', 'Geist', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         mono: ['Geist Mono', 'Courier New', 'monospace'],
+      },
+      backgroundImage: {
+        'axiom-gradient': 'linear-gradient(135deg, #1E1B4B 0%, #4338CA 100%)',
+        'james-gradient': 'linear-gradient(135deg, #6D28D9 0%, #A855F7 100%)',
+        'sanctuary-glow': 'radial-gradient(circle at center, rgba(168, 85, 247, 0.03) 0%, transparent 70%)',
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

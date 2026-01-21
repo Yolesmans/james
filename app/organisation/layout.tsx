@@ -3,17 +3,17 @@
 import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Settings, Shield } from 'lucide-react'
+import { Shield } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { label: 'Mon Espace', href: '/profil' },
-  { label: 'Mon ADN', href: '/profil/analyse' },
-  { label: 'Mon Prisme', href: '/profil/resultats' },
-  { label: 'Mon Horizon', href: '/profil/futur' },
+  { label: 'Dashboard', href: '/organisation' },
+  { label: 'Postes', href: '/organisation/postes' },
+  { label: 'Managers', href: '/organisation/managers' },
+  { label: 'Offres', href: '/organisation/offres' },
 ]
 
-export default function ProfilLayout({
+export default function OrganisationLayout({
   children,
 }: {
   children: React.ReactNode
@@ -31,11 +31,9 @@ export default function ProfilLayout({
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       
-      // Si on scroll vers le bas et qu'on a scrollé plus de 50px, le header principal est masqué
       if (currentScrollY > 50 && currentScrollY > lastScrollY) {
         setIsScrolled(true)
       } 
-      // Si on scroll vers le haut ou qu'on est en haut, le header principal est visible
       else if (currentScrollY < lastScrollY || currentScrollY < 50) {
         setIsScrolled(false)
       }
@@ -61,7 +59,7 @@ export default function ProfilLayout({
               {/* Navigation Tabs - Centrée */}
               <div className="flex items-center space-x-1 md:space-x-2 overflow-x-auto scrollbar-hide">
                 {navItems.map((item) => {
-                  const isActive = pathname === item.href
+                  const isActive = pathname === item.href || (item.href !== '/organisation' && pathname?.startsWith(item.href))
                   return (
                     <Link
                       key={item.href}
@@ -84,28 +82,13 @@ export default function ProfilLayout({
                 })}
               </div>
 
-              {/* Badge Sanctuaire + Settings - Positionnés à droite */}
+              {/* Badge Sanctuaire - Positionné à droite */}
               <div className="absolute right-4 md:right-6 flex items-center gap-3">
-                {/* Badge Sanctuaire de données */}
                 <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-sm border border-[rgba(226,232,240,0.4)] text-[12px] text-axiom-primary/70 shadow-sm">
                   <div className="w-2 h-2 rounded-full bg-[#A855F7] animate-pulse-slow" />
                   <Shield className="w-3 h-3 text-[#A855F7]" strokeWidth={1} />
-                  <span className="font-medium">Sanctuaire de données</span>
+                  <span className="font-medium">Sanctuaire Organisation</span>
                 </div>
-                
-                {/* Settings Icon */}
-                <Link
-                  href="/profil/settings"
-                  className={cn(
-                    'p-2 rounded-lg transition-colors duration-200',
-                    pathname === '/profil/settings'
-                      ? 'text-axiom-primary bg-[rgba(226,232,240,0.3)]'
-                      : 'text-axiom-secondary hover:text-axiom-primary hover:bg-[rgba(226,232,240,0.3)]'
-                  )}
-                  aria-label="Paramètres"
-                >
-                  <Settings className="h-5 w-5" />
-                </Link>
               </div>
             </nav>
           </div>
