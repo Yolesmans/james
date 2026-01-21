@@ -6,10 +6,55 @@ import BentoCard from '@/components/ui/BentoCard'
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false)
+  const [displayedText, setDisplayedText] = useState('')
+  const fullText = "L'alignement parfait ne doit plus être du hasard...\nMais une évidence !"
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+
+    let currentIndex = 0
+    const baseTypingSpeed = 60 // ms par caractère (vitesse de base)
+    const pauseAfterHasard = 1200 // pause de 1.2s après "hasard..."
+
+    const getTypingSpeed = (index: number) => {
+      // Vitesse variable pour simuler une frappe humaine (entre 40ms et 100ms)
+      const variation = Math.random() * 40 + 40
+      return Math.floor(variation)
+    }
+
+    const typeWriter = () => {
+      if (currentIndex < fullText.length) {
+        const currentChar = fullText[currentIndex]
+        const textBefore = fullText.slice(0, currentIndex)
+        
+        // Vérifier si on vient de finir "hasard..."
+        if (textBefore.endsWith('hasard...')) {
+          // Pause plus longue après "hasard..."
+          setTimeout(() => {
+            currentIndex++
+            setDisplayedText(fullText.slice(0, currentIndex))
+            if (currentIndex < fullText.length) {
+              setTimeout(typeWriter, getTypingSpeed(currentIndex))
+            }
+          }, pauseAfterHasard)
+        } else {
+          setDisplayedText(fullText.slice(0, currentIndex + 1))
+          currentIndex++
+          if (currentIndex < fullText.length) {
+            setTimeout(typeWriter, getTypingSpeed(currentIndex))
+          }
+        }
+      }
+    }
+
+    // Démarrer l'animation après un court délai
+    const timer = setTimeout(typeWriter, 300)
+    return () => clearTimeout(timer)
+  }, [mounted, fullText])
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-axiom-bg overflow-hidden relative">
@@ -21,8 +66,11 @@ export default function HomePage() {
       <div className="w-full max-w-4xl px-4">
         {/* Texte central EXACT */}
         <div className="text-center mb-16">
-          <p className="font-serif font-semibold text-xl md:text-2xl text-axiom-primary tracking-tight">
-            L'alignement parfait ne doit plus être du hasard.
+          <p className="font-serif font-semibold text-xl md:text-2xl text-axiom-primary tracking-tight whitespace-pre-line min-h-[4rem]">
+            {displayedText}
+            {mounted && displayedText.length < fullText.length && (
+              <span className="animate-pulse">|</span>
+            )}
           </p>
         </div>
 
