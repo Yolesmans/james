@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { getAdnCompleted } from '@/lib/adn'
 import BentoCard from '@/components/ui/BentoCard'
 import { Lock } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const MANIFESTE_STORAGE_KEY = 'axiom_profil_manifeste_vu'
 
