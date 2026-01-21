@@ -51,6 +51,10 @@ export default function ProfilLayout({
     return <div className="min-h-screen bg-axiom-bg">{children}</div>
   }
 
+  if (pathname === '/profil') {
+    return <>{children}</>
+  }
+
   return (
     <div className="min-h-screen bg-axiom-bg">
       {/* Header Navigation - Barre flottante premium */}
