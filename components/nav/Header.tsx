@@ -40,7 +40,7 @@ export default function Header({ hideCta = false }: { hideCta?: boolean }) {
       >
         <div className="container flex h-16 items-center justify-between px-4 md:px-6">
           {/* Logo */}
-          <Link href="/profil" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <span className="text-xl font-serif font-semibold text-axiom-primary">AXIOM</span>
           </Link>
 
