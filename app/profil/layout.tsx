@@ -22,7 +22,12 @@ export default function ProfilLayout({
   const [isScrolled, setIsScrolled] = useState(false)
   const [lastScrollY, setLastScrollY] = useState(0)
 
+  // Focus Mode: masquer header et footer sur /profil/analyse
+  const isFocusMode = pathname === '/profil/analyse'
+
   useEffect(() => {
+    if (isFocusMode) return
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       
@@ -40,11 +45,12 @@ export default function ProfilLayout({
 
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [lastScrollY])
+  }, [lastScrollY, isFocusMode])
 
   return (
     <div className="min-h-screen bg-axiom-bg">
-      {/* Header Navigation - Barre flottante premium */}
+      {/* Header Navigation - Barre flottante premium (masqué en Focus Mode) */}
+      {!isFocusMode && (
       <header className={`sticky ${isScrolled ? 'top-0' : 'top-16'} z-50 w-full transition-all duration-300`}>
         <div className="container max-w-6xl mx-auto px-4 md:px-6 pt-2">
           <div className="bg-axiom-surface backdrop-blur-xl border border-[rgba(226,232,240,0.4)] rounded-axiom shadow-sm" style={{ backgroundColor: 'rgba(255, 255, 255, 0.98)' }}>
@@ -102,9 +108,10 @@ export default function ProfilLayout({
           </div>
         </div>
       </header>
+      )}
 
       {/* Page Content */}
-      <div className={`transition-all duration-300 ${isScrolled ? 'pt-0' : 'pt-4'}`}>
+      <div className={`transition-all duration-300 ${isFocusMode ? 'pt-0' : isScrolled ? 'pt-0' : 'pt-4'}`}>
         {children}
       </div>
     </div>

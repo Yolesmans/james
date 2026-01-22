@@ -25,6 +25,11 @@ export default function ConditionalHeader() {
     return null
   }
   
+  // Sur /profil/analyse, masquer complètement le header (Focus Mode)
+  if (pathname === '/profil/analyse') {
+    return null
+  }
+  
   // Sur /profil/*, afficher le header mais sans le bouton CTA
   if (pathname.startsWith('/profil')) {
     return <Header hideCta />
