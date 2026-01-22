@@ -1,8 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import BentoCard from '@/components/ui/BentoCard'
 
-export default function ProfilFuturPage() {
+export default function ProfilHorizonPage() {
   return (
     <div className="min-h-screen bg-axiom-bg pb-20">
       <div className="container max-w-4xl mx-auto px-4 pt-4 pb-12 md:pb-24">
@@ -20,6 +21,15 @@ export default function ProfilFuturPage() {
                 Il ne s'agit pas d'un métier,
                 mais d'un champ de cohérence possible.
               </p>
+              
+              <div className="pt-4">
+                <Link
+                  href="/candidate/matching"
+                  className="inline-block bg-gradient-to-r from-[#6D28D9] to-[#A855F7] text-white rounded-2xl px-6 py-3 font-medium"
+                >
+                  Découvrir les entreprises compatibles
+                </Link>
+              </div>
             </div>
           </BentoCard>
         </div>
